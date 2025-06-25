@@ -80,11 +80,12 @@ class TestColumnSpace(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures"""
         self.temp_dir = tempfile.mkdtemp()
+        self.original_cwd = os.getcwd()  # Store original working directory
         os.chdir(self.temp_dir)
     
     def tearDown(self):
         """Clean up test fixtures"""
-        os.chdir("/")
+        os.chdir(self.original_cwd)  # Restore original working directory first
         shutil.rmtree(self.temp_dir)
     
     def test_integer_column_creation(self):
@@ -154,6 +155,7 @@ class TestDataGenerator(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures"""
         self.temp_dir = tempfile.mkdtemp()
+        self.original_cwd = os.getcwd()  # Store original working directory
         
         # Simple test configuration
         self.config = GeneratorConfig(
@@ -174,6 +176,7 @@ class TestDataGenerator(unittest.TestCase):
     
     def tearDown(self):
         """Clean up test fixtures"""
+        os.chdir(self.original_cwd)  # Restore original working directory
         shutil.rmtree(self.temp_dir)
     
     def test_basic_generation(self):
