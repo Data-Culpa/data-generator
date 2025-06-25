@@ -1,0 +1,116 @@
+{
+  "config": {
+    "num_days": 2,
+    "approx_rows_per_day": 25,
+    "output_dir": "json_test",
+    "output_format": "json",
+    "cache_batch_size": 10000,
+    "max_workers": 1,
+    "row_variation_percentage": 0.2,
+    "random_day_reduction_probability": 0.8,
+    "random_day_reduction_factor": 0.1,
+    "cleanup_cache": true,
+    "resume_generation": false,
+    "log_level": "INFO",
+    "progress_bars": true,
+    "columns": [
+      {
+        "name": "id",
+        "data_type": 0,
+        "transition_percentage": 0.0,
+        "transition_type": 0,
+        "distribution_flags": 1
+      },
+      {
+        "name": "uniform1",
+        "data_type": 0,
+        "transition_percentage": 0.0,
+        "transition_type": 0,
+        "distribution_flags": 2
+      },
+      {
+        "name": "zeroes1",
+        "data_type": 0,
+        "transition_percentage": 0.6,
+        "transition_type": 256,
+        "distribution_flags": 2
+      },
+      {
+        "name": "nulls1",
+        "data_type": 0,
+        "transition_percentage": 0.4,
+        "transition_type": 128,
+        "distribution_flags": 2
+      },
+      {
+        "name": "normal1",
+        "data_type": 1,
+        "transition_percentage": 0.2,
+        "transition_type": 16,
+        "distribution_flags": 4
+      },
+      {
+        "name": "uniform2",
+        "data_type": 1,
+        "transition_percentage": 0.3,
+        "transition_type": 2,
+        "distribution_flags": 2
+      },
+      {
+        "name": "normal2",
+        "data_type": 0,
+        "transition_percentage": 0.7,
+        "transition_type": 10,
+        "distribution_flags": 4
+      },
+      {
+        "name": "normal3",
+        "data_type": 0,
+        "transition_percentage": 0.7,
+        "transition_type": 2,
+        "distribution_flags": 4
+      },
+      {
+        "name": "uniform3",
+        "data_type": 1,
+        "transition_percentage": 0.9,
+        "transition_type": 4,
+        "distribution_flags": 2
+      },
+      {
+        "name": "catStr1",
+        "data_type": 3,
+        "transition_percentage": 0.5,
+        "transition_type": 64,
+        "distribution_flags": 0
+      },
+      {
+        "name": "catStrSteady2",
+        "data_type": 3,
+        "transition_percentage": 0,
+        "transition_type": 0,
+        "distribution_flags": 0
+      },
+      {
+        "name": "descStr1",
+        "data_type": 2,
+        "transition_percentage": 0.5,
+        "transition_type": 32,
+        "distribution_flags": 0
+      }
+    ]
+  },
+  "metrics": {
+    "total_rows_generated": 26,
+    "total_columns": 12,
+    "generation_time_seconds": 0.0,
+    "cache_operations": 24,
+    "files_written": 2,
+    "errors_encountered": 0
+  },
+  "rows_per_day": {
+    "0": 24,
+    "1": 2
+  },
+  "generation_timestamp": "2025-06-25 00:40:21"
+}

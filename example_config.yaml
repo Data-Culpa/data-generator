@@ -1,0 +1,93 @@
+# Example configuration for the data generator
+# This file demonstrates how to configure the data generation process
+
+# Basic generation settings
+num_days: 10
+approx_rows_per_day: 1000
+output_dir: "data"
+output_format: "csv"  # Options: csv, json, jsonl
+
+# Performance settings
+max_workers: null  # null means use all available CPUs, or set to 1 for single-threaded, etc.
+cache_batch_size: 10000
+progress_bars: true
+
+# Data variation settings
+row_variation_percentage: 0.2  # 20% variation in rows per day
+random_day_reduction_probability: 0.8  # 80% chance a day gets reduced
+random_day_reduction_factor: 0.1  # Reduce by 90% when it happens
+
+# File management
+cleanup_cache: true
+resume_generation: false
+
+# Logging
+log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+
+# Column definitions
+columns:
+  - name: "id"
+    data_type: "INTEGER"
+    transition_percentage: 0.0
+    transition_type: 0
+    distribution_flags: 1  # INCREMENT
+    
+  - name: "uniform_numbers"
+    data_type: "INTEGER"
+    transition_percentage: 0.0
+    transition_type: 0
+    distribution_flags: 2  # UNIFORM
+    
+  - name: "high_zeros_later"
+    data_type: "INTEGER"
+    transition_percentage: 0.6  # Start showing high zeros at 60% through
+    transition_type: 128  # ZEROS_HIGH
+    distribution_flags: 2  # UNIFORM
+    
+  - name: "high_nulls_later"
+    data_type: "INTEGER"
+    transition_percentage: 0.4  # Start showing high nulls at 40% through
+    transition_type: 64  # NULLS_HIGH
+    distribution_flags: 2  # UNIFORM
+    
+  - name: "schema_change_field"
+    data_type: "FLOAT"
+    transition_percentage: 0.2  # Field name changes at 20% through
+    transition_type: 16  # SCHEMA_NAME
+    distribution_flags: 4  # NORMAL
+    
+  - name: "scaling_values"
+    data_type: "FLOAT"
+    transition_percentage: 0.3  # Values scale at 30% through
+    transition_type: 2  # VALUES_SCALE
+    distribution_flags: 2  # UNIFORM
+    
+  - name: "becomes_strings"
+    data_type: "INTEGER"
+    transition_percentage: 0.7  # Sometimes becomes strings at 70% through
+    transition_type: 10  # VALUES_SCALE | VALUES_SOME_STRINGS (2 + 8)
+    distribution_flags: 4  # NORMAL
+    
+  - name: "always_strings_later"
+    data_type: "FLOAT"
+    transition_percentage: 0.9  # All values become strings at 90% through
+    transition_type: 4  # VALUES_ALL_STRINGS
+    distribution_flags: 2  # UNIFORM
+    
+  - name: "category_to_long"
+    data_type: "STRING_CATEGORY"
+    transition_percentage: 0.5  # Category strings become long at 50% through
+    transition_type: 32  # STRING_SMALL_TO_LONG
+    distribution_flags: 0
+    
+  - name: "stable_categories"
+    data_type: "STRING_CATEGORY"
+    transition_percentage: 0.0  # No transitions
+    transition_type: 0
+    distribution_flags: 0
+    
+  - name: "long_to_category"
+    data_type: "STRING_LONG"
+    transition_percentage: 0.5  # Long strings become categories at 50% through
+    transition_type: 16  # STRING_LONG_TO_SMALL
+    distribution_flags: 0 
